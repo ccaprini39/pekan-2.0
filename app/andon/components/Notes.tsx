@@ -15,6 +15,7 @@ import TextStyle from '@tiptap/extension-text-style';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { lowlight } from 'lowlight';
 import { useEffect } from 'react';
+import { ScrollArea } from '@mantine/core';
 
 export default function PomodoroNotes(){
     const [notes, setNotes] = useLocalStorage({ 'key': 'notes', defaultValue: 'Text Here?' });//this will be in markdown
@@ -78,12 +79,6 @@ export default function PomodoroNotes(){
         },
     });
 
-    useEffect(() => {
-        const shallowNotes = localStorage.getItem('notes');
-        // console.log('shallow notes', shallowNotes)
-        // console.log('notes', notes)
-    },[notes])
-    
     return (
         <RichTextEditor editor={editor}>
             <RichTextEditor.Toolbar sticky stickyOffset={60}>
@@ -145,7 +140,9 @@ export default function PomodoroNotes(){
                 />
 
             </RichTextEditor.Toolbar>
-            <RichTextEditor.Content style={{height: '70vh'}} />
+            <ScrollArea style={{height: '70vh'}}>
+                <RichTextEditor.Content style={{minHeight: '70vh'}} />
+            </ScrollArea>
         </RichTextEditor>
     )
 }
