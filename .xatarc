@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Collin-Caprini-s-workspace-fs8hhd.us-east-1.xata.sh/db/pekan-2",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
