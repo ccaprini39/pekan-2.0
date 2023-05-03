@@ -14,24 +14,19 @@ import { Color } from '@tiptap/extension-color';
 import TextStyle from '@tiptap/extension-text-style';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { lowlight } from 'lowlight';
-import { useEffect } from 'react';
 import { ScrollArea } from '@mantine/core';
 
 export default function PomodoroNotes(){
     const [notes, setNotes] = useLocalStorage({ 'key': 'notes', defaultValue: 'Text Here?' });//this will be in markdown
     let shallowNotes = localStorage.getItem('notes') || 'backup text';
-    console.log('shallow notes uncut', shallowNotes)
     //if the first and last characters are quotes, then we need to remove them
     const firstChar = shallowNotes[0];
     const lastChar = shallowNotes[shallowNotes.length - 1];
-    console.log('first char', firstChar)
-    console.log('last char', lastChar)
     //remove the first character
-    shallowNotes = shallowNotes.slice(1, shallowNotes.length);
+    if(firstChar === `"`) shallowNotes = shallowNotes.slice(1, shallowNotes.length);
     //remove the last character
-    shallowNotes = shallowNotes.slice(0, shallowNotes.length - 1);
+    if(lastChar === `"`) shallowNotes = shallowNotes.slice(0, shallowNotes.length - 1);
     //the first and last characters are quotes, so we need to remove them
-    console.log('shallow notes', shallowNotes)
 
     shallowNotes = rescapeHtml(shallowNotes);
 
@@ -72,7 +67,6 @@ export default function PomodoroNotes(){
         ],
         content: shallowNotes || 'Text Here!',
         onUpdate({ editor }) {
-            //setNotes(editor.getHTML());
             const html = editor.getHTML();
             const escapedHtml = escapeHtml(html);
             setNotes(escapedHtml);

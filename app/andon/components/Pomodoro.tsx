@@ -2,26 +2,15 @@
 
 import { useState } from "react";
 import PomodoroNotes from "./Notes";
+import PomodoroTimer from "./PomodoroTimer";
 
 
 export default function Pomodoro(){
 
-    const [pom, setPom] = useState(1);
-    const [state, setState] = useState("work");
-    const [time, setTime] = useState(25);
-    const [workLength, setWorkLength] = useState(25);
-    const [shortBreakLength, setShortBreakLength] = useState(5);
-    const [longBreakLength, setLongBreakLength] = useState(15);
-    const [running, setRunning] = useState(false); //if this is true, then the timer is running
-
-    
-
-
     return (
         <div>
-            <h1>Pomodoro</h1>
+            <PomodoroTimer />
             <PomodoroNotes />
-
         </div>
     )
 }
