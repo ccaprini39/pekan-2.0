@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import PomodoroNotes from "./Notes";
+import Notes from "./Notes";
 import PomodoroTimer from "./PomodoroTimer";
 
 
@@ -10,7 +10,7 @@ export default function Pomodoro(){
     return (
         <div>
             <PomodoroTimer />
-            <PomodoroNotes />
+            <Notes />
         </div>
     )
 }
