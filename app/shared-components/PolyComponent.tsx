@@ -7,7 +7,6 @@ import PomodoroTimer from "../andon/components/PomodoroTimer";
 
 export default function PolyComponent({itemProps}: {itemProps: LayoutItemProps}){
 
-    const [item, setItem] = useState<LayoutItemProps>(defaultLayoutItemProps)
     const { ref, height, width } = useElementSize();
 
         const style={
@@ -15,6 +14,10 @@ export default function PolyComponent({itemProps}: {itemProps: LayoutItemProps})
         color: 'white',
         borderRadius: '5px',
     } 
+    const i = itemProps.i || 'default'
+    const type = itemProps.type || 'default'
+    const id = i + '-' + type
+
 
     switch(itemProps.type){
         case 'notes':
@@ -23,7 +26,7 @@ export default function PolyComponent({itemProps}: {itemProps: LayoutItemProps})
                     ref={ref} 
                     style={{width: '98%', height: '96%', paddingLeft: '5px', paddingTop: '5px'}}
                 >
-                    <Notes height={height} />
+                    <Notes id={id} height={height} />
                 </div>
             )
         case 'pomodoro':
