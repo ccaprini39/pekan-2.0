@@ -32,7 +32,7 @@ export default function Notes( { id, initNotes } :  { height : number, id ?: str
     useEffect(() => {
         interval.start();
         return interval.stop;
-    },[])
+    },[interval])
 
     //I need to get the date for today, in the format of DDMMMYYYY
     //ex 22May2023
